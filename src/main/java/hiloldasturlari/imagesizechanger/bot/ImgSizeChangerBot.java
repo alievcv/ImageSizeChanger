@@ -21,22 +21,21 @@ import java.util.Optional;
 public class ImgSizeChangerBot extends TelegramLongPollingBot {
 
 
-    @Value("${}")
+    @Value("${telegram.bot.username}")
     private String botUsername;
+    @Value("${telegram.bot.token}")
     private String botToken;
 
 
+    @Override
+    public String getBotToken() {
+        return botToken;
+    }
 
     @Override
     public String getBotUsername() {
-        return "imgsizechanger_bot";
+        return botUsername;
     }
-
-    @Override
-    public String getBotToken() {
-        return "7474398004:AAGk2Ykki13nkxY08_f7hbj1dhdOxMHFjSM";
-    }
-
 
     private enum State { AWAITING_IMAGE, AWAITING_DIMENSIONS }
     private State state = State.AWAITING_IMAGE;
